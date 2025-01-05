@@ -5,9 +5,9 @@ from application.plotter import Plotter
 
 class Commander:
     @staticmethod
-    def generate_data(start_time: str, steps_number: int, time_period: str, file_path: str):
+    def generate_data(start_time: str, steps_number: int, file_path: str):
         generator = DataGenerator()
-        metrics_data_frame = generator.generate_set_of_metrics(start_time, steps_number, time_period)
+        metrics_data_frame = generator.generate_set_of_metrics(start_time, steps_number)
         generator.save_metrics(metrics_data_frame, file_path)
 
     @staticmethod

@@ -30,9 +30,7 @@ class InteractiveShell(cmd.Cmd):
 
     def do_generate_data(self, arg):
         parser = argparse.ArgumentParser(prog='generate-data')
-        parser.add_argument('--start-time', type=str, required=False, default='2025-01-01')
         parser.add_argument('--steps-number', type=int, required=True)
-        parser.add_argument('--time-period', type=str, required=True)
         parser.add_argument('--file-path', type=str, required=True)
         self.parse_and_run(parser, arg, 'generate_data')
 
@@ -45,8 +43,7 @@ class InteractiveShell(cmd.Cmd):
         parser = argparse.ArgumentParser(prog='send-data')
         parser.add_argument('--file-path', type=str, required=True)
         parser.add_argument('--url', type=str, required=True)
-        # parser.add_argument('--start-time', type=str, required=True)
-        parser.add_argument('--time-interval-ms', type=int, required=True)
+        parser.add_argument('--time-period', type=str, required=True)
         parser.add_argument('--max-messages', type=int, required=True)
         self.parse_and_run(parser, arg, 'send_data')
 

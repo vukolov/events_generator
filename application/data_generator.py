@@ -4,17 +4,16 @@ import json
 
 
 class DataGenerator:
-    def generate_set_of_metrics(self, start_time: str, steps_number: int, time_period: str):
+    def generate_set_of_metrics(self, start_time: str, steps_number: int):
         """
         Generate a set of metrics with anomalies
         :param start_time:
         :param steps_number:
-        :param time_period: https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#offset-aliases
         :return:
         """
         # Generate timestamps for 30 days with a step of 1 second
         np.random.seed(42)
-        dates = pd.date_range(start=start_time, periods=steps_number, freq=time_period)
+        dates = pd.date_range(start=start_time, periods=steps_number, freq='s')
 
         # Generate primary metric
         primary_metric = self._generate_primary_metric(dates)
@@ -59,7 +58,7 @@ class DataGenerator:
         return metrics
 
     def save_metrics(self, metrics_df, metrics_file_path):
-        metrics_df.to_csv(metrics_file_path, index=True, index_label='event_time')
+        metrics_df.to_csv(metrics_file_path, index=False)
         print("CSV file saved successfully!")
 
     def _generate_primary_metric(self, dates):
