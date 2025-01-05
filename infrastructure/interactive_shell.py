@@ -16,6 +16,7 @@ class InteractiveShell(cmd.Cmd):
   quit                     - Exit the application
   exit                     - Exit the application
   generate-data            - Generate data
+                            example: generate-data --start-time 2025-01-01 --steps-number 1000 --time-period 1ms --file-path data/group_1.csv
   plot-data                - Plot data from a file
   send-data                - Send data to a server
   """)
@@ -29,7 +30,9 @@ class InteractiveShell(cmd.Cmd):
 
     def do_generate_data(self, arg):
         parser = argparse.ArgumentParser(prog='generate-data')
+        parser.add_argument('--start-time', type=str, required=False, default='2025-01-01')
         parser.add_argument('--steps-number', type=int, required=True)
+        parser.add_argument('--time-period', type=str, required=True)
         parser.add_argument('--file-path', type=str, required=True)
         self.parse_and_run(parser, arg, 'generate_data')
 
